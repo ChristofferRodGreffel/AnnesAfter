@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #1b6788;
+    --color-primary-opacity: #1b6788c7;
+    --color-dark: #373737;
+    --color-white: #ffffff;
+    --color-main-grey: #eaeaea;
+    --color-light-grey: #f2f2f2;
+    --color-grey: #777777;
+    --color-cancelGrey: #999999;
+    --color-red: #b72626;
+    --color-green: #38773b;
+  }
+  html {
+    font-family: "Montserrat", sans-serif;
+    color: var(--color-dark);
+  }
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  border: 2px solid var(--color-dark);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+input[type="text"]:focus-within,
+input[type="number"]:focus-within,
+input[type="password"]:focus-within,
+input[type="email"]:focus-within,
+input[type="tel"]:focus-within {
+  outline: none !important;
+  border: 3px solid var(--color-primary);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  padding: 8px 15px !important;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-dark);
+  width: 15px;
+}
+
+.content-grid {
+  --padding-inline: 1rem;
+  --content-max-width: 90%;
+  --breakout-max-width: 95%;
+
+  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding-inline), 1fr)
+    [breakout-start] minmax(0, var(--breakout-size))
+    [content-start] min(90% - (var(--padding-inline) * 2), var(--content-max-width))
+    [content-end]
+    minmax(0, var(--breakout-size)) [breakout-end]
+    minmax(var(--padding-inline), 1fr) [full-width-end];
+}
+
+.content-grid > :not(.breakout, .full-width),
+.full-width > :not(.breakout, .full-width) {
+  grid-column: content;
+}
+
+.content-grid > .breakout {
+  grid-column: breakout;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+img.full-width {
+  width: 100%;
+  max-height: 45vh;
+  object-fit: cover;
+}
+
+.customBalance {
+  text-wrap: balance;
+}
+
+.customClassShowHideButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.customClassShowHideButton:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  left: 0%;
+  top: 50%;
+  transform: rotate(6deg);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
